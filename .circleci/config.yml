@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: cibuilds/github:0.10
+      - image: circleci/golang:1.11.10
 
     environment:
       ARTIFACT_PATH: /tmp/artifacts
@@ -15,7 +15,7 @@ jobs:
       - run:
         name: "Publish Release on GitHub"
         command: |
-            VERSION=$(my-binary --version)
+            go get github.com/tcnksm/ghr
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} $ARTIFACT_PATH/
 
 workflows:
