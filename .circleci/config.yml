@@ -10,7 +10,9 @@ jobs:
 
     steps:
       - checkout
-      - run: make
+      - run:
+          name: "Build Project Tarball"
+          command: make
       - run:
           name: "Publish Release on GitHub"
           command: |
