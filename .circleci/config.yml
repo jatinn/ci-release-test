@@ -13,8 +13,8 @@ jobs:
       - run: make
       - run: mv sample.tar.gz $ARTIFACT_PATH/.
       - run:
-        name: "Publish Release on GitHub"
-        command: |
+          name: "Publish Release on GitHub"
+          command: |
             go get github.com/tcnksm/ghr
             ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${VERSION} $ARTIFACT_PATH/
 
